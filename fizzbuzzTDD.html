@@ -1,0 +1,51 @@
+<script src="simpletest.js"></script>
+<script>
+
+//App Requirements: Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”
+
+
+function hundredFizzBuzz() {
+  let oneHundredArray = (Array(100));
+  const length = oneHundredArray.length
+  let results = [];
+
+  for (let i = 1; i <= length; i++){
+      
+        if (i%15 === 0) {
+          result = 'FizzBuzz';
+        } else if (i%3 === 0){
+          result = 'Fizz';
+        } else if (i%5 === 0){
+          result = 'Buzz'
+        } else {
+          result = i;
+        }
+      results.push(result);
+    }
+    return results;
+}
+
+
+
+tests({
+
+'It should print 100 values': function() {
+  let hundredResult =  hundredFizzBuzz();
+  eq(hundredResult.length, 100);
+},
+'It should print "Fizz" for numbers that are multiples of 3': function () {
+  let fizzResult = hundredFizzBuzz();
+  eq(fizzResult[2],'Fizz');
+},
+'It should print "Buzz" for numbers that are multiples of 5': function () {
+  let buzzResult = hundredFizzBuzz();
+  eq(buzzResult[9],'Buzz');
+},
+'It should print "FizzBuzz" for numbers that are multiples of 3 and 5': function () {
+  let fizzBuzzResult = hundredFizzBuzz(Array(15));
+  eq(fizzBuzzResult[14],'FizzBuzz');
+}
+
+})
+
+</script>
