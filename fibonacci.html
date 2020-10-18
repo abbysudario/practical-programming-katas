@@ -1,0 +1,37 @@
+
+<script src="simpletest.js"></script>
+<script>
+
+//"In mathematics, the Fibonacci numbers are the numbers in the following integer sequence, called the Fibonnaci sequence, and characterized by the fact that every number after the first two is the sum of the two preceding ones"
+
+//Depending on the chosen starting point of the sequence (0 or 1) the sequence would loook like this:
+
+function fibonacci(lengthOfSequence) {
+  
+    let fibArray = [0, 1];
+    
+    for(let i = 2; i <= lengthOfSequence; i++) {
+      fibArray[i] = fibArray[i - 2] + fibArray[i - 1]; //previous index + index before previous one
+    }
+    return fibArray;
+  }
+
+tests({
+
+'It should calculate correct results for fibonacci(10), given 0 as starting point': function () {
+  const fibResult = fibonacci(10);
+  eq(fibResult[10], 55);
+},
+'It should calculate correct results for fibonacci(100), given 0 as starting point': function () {
+  const fibResult = fibonacci(100);
+  eq(fibResult[100], 354224848179262000000);
+},
+'Number of value printed should be length+1': function () {
+  const fibResult = fibonacci(16);
+  eq(fibResult.length, 17);
+}
+
+})
+
+</script>
+  
