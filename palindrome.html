@@ -1,0 +1,44 @@
+<script src="simpletest.js"></script>
+<script>
+
+// Write a function that determines whether a given string is a palindrome. Your function should accept a string as a parameter and return a boolean (true if the string is a palindrome, false if it is not).
+
+// A palindrome is a word, phrase, number, or other sequence of characters which reads the same backward or forward. Allowances may be made for adjustments to capital letters, punctuation, and word dividers. Examples in English include “A man, a plan, a canal, Panama!”, “Amor, Roma”, “race car”, “stack cats”, “step on no pets”, “taco cat”, “put it up”, “Was it a car or a cat I saw?” and “No ‘x’ in Nixon”.
+
+function palindrome (string) {
+const convertedString = string.toString().toLowerCase().replace(/[\W_]/g, '');
+ return(Array.from(convertedString).toString() == [...convertedString].reverse().toString())
+}
+
+tests({
+'It should take alphanumeric arguments (numbers or strings)': function () {
+  const palindromeTextResult = palindrome('radar');
+  const palindromeNumberResult = palindrome(123321);
+  eq(palindromeTextResult, true);
+  eq(palindromeNumberResult, true);
+},
+'It should disregard non-alphanumeric characters': function () {
+  const palindromeResult = palindrome('A man, a plan, a canal, Panama!');
+  eq(palindromeResult, true);
+},
+'It should disregard case of alphanumeric characters': function () {
+  const palindromeResult = palindrome('UFO tofu?');
+  eq(palindromeResult, true);
+},
+'It should return true if argument passed in is a palindromic sequence': function () {
+  const palindromeTextResult = palindrome('Murder for a jar of red rum');
+  const palindromeNumberResult = palindrome(143341);
+  eq(palindromeTextResult, true);
+  eq(palindromeNumberResult, true)
+},
+'It should return false if argument passed in is a non-palindromic sequence': function () {
+  const palindromeTextResult = palindrome('Carnation');
+  const palindromeNumberResult = palindrome(164)
+  eq(palindromeTextResult, false);
+  eq(palindromeNumberResult, false)
+}
+
+})
+
+</script>
+  
