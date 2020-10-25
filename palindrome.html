@@ -7,6 +7,8 @@
 
 function palindrome (userInput) {
 const convertedUserInput = userInput.toString().toLowerCase().replace(/[\W_]/g, '');
+  console.log(Array.from(convertedUserInput));
+  console.log([...convertedUserInput].reverse());
  return(Array.from(convertedUserInput).toString() == [...convertedUserInput].reverse().toString())
 }
 
@@ -15,17 +17,19 @@ const convertedUserInput = userInput.toString().toLowerCase().replace(/[\W_]/g, 
 
 
 tests({
-'It should take alphanumeric arguments (numbers or strings)': function () {
+'It should take alphanumeric and non-alphanumeric arguments': function () {
   const palindromeTextResult = palindrome('radar');
   const palindromeNumberResult = palindrome(123321);
+  const palindromeWithNonAlphaNumericResult = palindrome('race$%^&car')
   eq(palindromeTextResult, true);
   eq(palindromeNumberResult, true);
+  eq(palindromeWithNonAlphaNumericResult, true)
 },
-'It should disregard non-alphanumeric characters': function () {
+'It should ignore non-alphanumeric characters': function () {
   const palindromeResult = palindrome('A man, a plan, a canal, Panama!');
   eq(palindromeResult, true);
 },
-'It should disregard case of alphanumeric characters': function () {
+'It should ignore case of alphanumeric characters': function () {
   const palindromeResult = palindrome('UFO tofu?');
   eq(palindromeResult, true);
 },
