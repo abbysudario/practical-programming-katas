@@ -1,2 +1,2 @@
-# practical-programming-katas (edited)
+# practical-programming-katas
 Vanillajs weekly katas
